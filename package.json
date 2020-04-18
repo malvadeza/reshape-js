@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "description": "A set of codemods to reshape your JavaScript codebase",
   "main": "index.js",
+  "scripts": {
+    "build": "echo \"It's building time\"",
+    "test": "echo \"It's testing time\""
+  },
   "repository": "https://github.com/malvadeza/reshape-js",
   "author": "Antonio Ribeiro",
   "license": "MIT",

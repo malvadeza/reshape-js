@@ -1,0 +1,38 @@
+version: 2.1
+orbs:
+  node: circleci/node@2.0.2
+
+jobs:
+  build:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - node/install-packages:
+          cache-key: "yarn.lock"
+          include-branch-in-cache-key: false
+          pkg-manager: "yarn"
+      - run:
+          name: Builds project
+          command: yarn build
+
+  test:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - node/install-packages:
+          cache-key: "yarn.lock"
+          include-branch-in-cache-key: false
+          pkg-manager: "yarn"
+      - run:
+          name: Run tests
+          command: yarn test
+
+workflows:
+    build-and-test:
+      jobs:
+        - test
+        - build:
+            requires:
+              - test
